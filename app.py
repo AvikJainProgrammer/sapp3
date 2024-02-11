@@ -25,16 +25,16 @@ OPENAI_URL = f"{api_base}/openai/deployments/{deployment_id}/extensions/chat/com
 
 def translate_text(text, target_language):
     openai.api_type = "azure"
-    openai.api_base = "https://azdogropenaidev.openai.azure.com/"
-    openai.api_version = "2023-07-01-preview"
-    openai.api_key = os.getenv("API_KEY")
+    openai.api_base = api_base
+    openai.api_version = "2023-06-01-preview"
+    openai.api_key = api_key
 
     message_text = [
         {"role":"system","content":"You are an AI assistant that translates text. You only respond with the translated text. You make sure that there are no spelling mistakes in your response."},
         {"role":"user","content":f"Translate the following test to, please make sure that structure and meaing of the sentense is not changed {target_language} : {text}"}]
 
     completion = openai.ChatCompletion.create(
-    engine="gopgpt35",
+    engine="proddgpt4",
     messages = message_text,
     temperature=0,
     max_tokens=800,
